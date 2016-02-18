@@ -15,12 +15,15 @@ var body = document.querySelector("body");
 body.onkeydown = function(e){
     //e.keyCode - will capture the key codes    
      //function keyCodeName();    
-    //displayMessage(e.keyCode);
-
-    var keyName = keyCodeName(e.keyCode);
-     displayMessage(keyName);
-  
+var keyName = keyCodeName(e.keyCode);
+     displayMessage(taxiLocationCounter);
 };
+
+var taxiLocationCounter = 1;
+ var i =  0; 
+  function outcome() {
+     i = i++;
+  } 
 
 var keyCodeName = function(keyCode) {
 
@@ -45,4 +48,9 @@ var keyCodeName = function(keyCode) {
    }
 	};
 
-	
+function createLocactionClass(number) {
+    if(number === 1) {
+        return "slot-one-of-nine";
+    }
+  };
+  
