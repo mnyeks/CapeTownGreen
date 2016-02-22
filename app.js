@@ -10,7 +10,7 @@ body.onkeydown = function(e){
 
 //find the body tag and store it in a variable called 'body'
 var body = document.querySelector("body");
-var taxiLocationCounter = 1;
+var taxiLocationCounter = 0;
 
  
 //listen for the keydown event
@@ -22,24 +22,14 @@ body.onkeydown = function(e){
 var keyName = keyCodeName(e.keyCode);
 var myClass = createLocationClass(taxiLocationCounter);      
       displayMessage(myClass);
-      taxiLocationCounter++;
-if(keyName === "right"){
-  moveForward();
-}
-else if(keyName === "left") {
-   moveReverse();
-  }
+        taxiLocationCounter++;
+        if(keyName === "right") {
+           moveForward();
+        }
+        else if(keyName === "left")
+          moveReverse();
+
 };
-      
-
-   
-
-   
- // var i =  0;
- // i=i+1; 
- // // function outcome() {
-    // i = i++;
-  //} 
 
 var keyCodeName = function(keyCode) {
 
@@ -64,49 +54,101 @@ var keyCodeName = function(keyCode) {
    }
 	};
 
-function createLocationClass(taxiLocationCounter) {
-    if(taxiLocationCounter === 1) {
+function createTrafficLightClass(num) {
+   if(num === 1) {
         return "slot-one-of-nine";
     }
-    else if(taxiLocationCounter === 2) {
+    else if(num === 2) {
         return "slot-two-of-nine";
     }
-    else if(taxiLocationCounter === 3) {
+    else if(num === 3) {
         return "slot-three-of-nine";
     }
-    else if(taxiLocationCounter === 4) {
+    else if(num === 4) {
         return "slot-four-of-nine";
     }
-    else if(taxiLocationCounter === 5) {
+    else if(num === 5) {
         return "slot-five-of-nine";
     }
-    else if(taxiLocationCounter === 6) {
+    else if(num === 6) {
         return "slot-six-of-nine";
     }
-    else if(taxiLocationCounter === 7) {
+    else if(num === 7) {
         return "slot-seven-of-nine";
     }
-     else if(taxiLocationCounter === 8) {
+     else if(num === 8) {
         return "slot-eight-of-nine";
     }
-    else if(taxiLocationCounter === 9) {
+    else if(num === 9) {
         return "slot-nine-of-nine";
     }
+
+};
+
+function createLocationClass(numb) {
+    if(numb === 1) {
+        return "slot-one-of-nine";
+    }
+    else if(numb === 2) {
+        return "slot-two-of-nine";
+    }
+    else if(numb === 3) {
+        return "slot-three-of-nine";
+    }
+    else if(numb === 4) {
+        return "slot-four-of-nine";
+    }
+    else if(numb === 5) {
+        return "slot-five-of-nine";
+    }
+    else if(numb === 6) {
+        return "slot-six-of-nine";
+    }
+    else if(numb === 7) {
+        return "slot-seven-of-nine";
+    }
+     else if(numb === 8) {
+        return "slot-eight-of-nine";
+    }
+    else if(numb === 9) {
+        return "slot-nine-of-nine";
+    }
+
  };
 
  function moveForward() {
   var currentLocation = createLocationClass(taxiLocationCounter);
       taxiLocationCounter++;
-  var newLocation = createLocationClass(taxiLocationCounter);
-      taxiLocationCounter--;    
+var newLocation = createLocationClass(taxiLocationCounter);
+      taxiLocationCounter--;   
     moveTaxi(currentLocation, newLocation);
  }
 
  function moveReverse() {
  var currentLocation = createLocationClass(taxiLocationCounter);
       taxiLocationCounter--;
-  var newLocation = createLocationClass(taxiLocationCounter);   
-    moveTaxi(currentLocation, newLocation);
+  var newLocation = createLocationClass(taxiLocationCounter);
+        taxiLocationCounter--;
+   moveTaxi(currentLocation, newLocation);
+ }
+var trafficLightElement = document.querySelector(trafficLightElementa);
+ function makeGreen() {
+   this.color
+   this.class
+ }
+
+ function makeOrange() {
+   this.color
+   this.class
+ }
+
+ function makeRed() {
+   this.color
+   this.class
+ }
+
+ function color() {
+
  }
 
  
