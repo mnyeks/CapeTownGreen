@@ -10,7 +10,7 @@ body.onkeydown = function(e){
 
 //find the body tag and store it in a variable called 'body'
 var body = document.querySelector("body");
-var taxiLocationCounter = 0;
+var taxiLocationCounter = 1;
  
  
 //listen for the keydown event
@@ -20,27 +20,32 @@ body.onkeydown = function(e){
     //e.keyCode - will capture the key codes    
      //function keyCodeName();    
 var keyName = keyCodeName(e.keyCode);
-var myClass = createLocationClass(taxiLocationCounter);
-var trafficLight = new TrafficLight(taxiLocationCounter);      
-      displayMessage(myClass);
-        taxiLocationCounter++;
 
+var trafficLight = new TrafficLight(taxiLocationCounter);   
         if(e.keyCode === 38) {
          trafficLight.makeRed();
         }
         else if(e.keyCode === 40) {
           trafficLight.makeGreen();
         }
-
+        else if(e.keyCode === 16) {
+          trafficLight.makeOrange();      
+        }
+        
         if(keyName === "right") {
-           moveForward();
-        }
-        else if(keyName === "left")
-          moveReverse();
+           if (taxiLocationCounter<9) {
+               moveForward();
+           }  
+        };
+        if(keyName === "left"){
+           if (taxiLocationCounter>1) {
+             moveReverse();
+           }  
+        };    
+        
+var myClass = createLocationClass(taxiLocationCounter);     
+      displayMessage(myClass);
 
-        if(keyName === "red") {
-
-        }
 };
 
 
@@ -133,8 +138,7 @@ function createLocationClass(numb) {
  function moveForward() {
   var currentLocation = createLocationClass(taxiLocationCounter);
       taxiLocationCounter++;
-var newLocation = createLocationClass(taxiLocationCounter);
-      taxiLocationCounter--;   
+var newLocation = createLocationClass(taxiLocationCounter);  
     moveTaxi(currentLocation, newLocation);
  }
 
@@ -142,7 +146,6 @@ var newLocation = createLocationClass(taxiLocationCounter);
  var currentLocation = createLocationClass(taxiLocationCounter);
       taxiLocationCounter--;
   var newLocation = createLocationClass(taxiLocationCounter);
-        taxiLocationCounter--;
    moveTaxi(currentLocation, newLocation);
  }
 
