@@ -10,7 +10,7 @@ body.onkeydown = function(e){
 
 //find the body tag and store it in a variable called 'body'
 var body = document.querySelector("body");
-var taxiLocationCounter = 1;
+var taxiLocationCounter = 0;
  
  
 //listen for the keydown event
@@ -21,16 +21,24 @@ body.onkeydown = function(e){
      //function keyCodeName();    
 var keyName = keyCodeName(e.keyCode);
 var myClass = createLocationClass(taxiLocationCounter);
-var tl = newTrafficLight(taxiLocationCounter);      
+var trafficLight = new TrafficLight(taxiLocationCounter);      
       displayMessage(myClass);
         taxiLocationCounter++;
+
+        if(e.keyCode === 38) {
+         trafficLight.makeRed();
+        }
+        else if(e.keyCode === 40) {
+          trafficLight.makeGreen();
+        }
+
         if(keyName === "right") {
            moveForward();
         }
         else if(keyName === "left")
           moveReverse();
 
-        if(TrafficLight === "red") {
+        if(keyName === "red") {
 
         }
 };
@@ -138,28 +146,38 @@ var newLocation = createLocationClass(taxiLocationCounter);
    moveTaxi(currentLocation, newLocation);
  }
 
- var trafficLightElement = document.querySelector(className);
+ 
 
- var TrafficLight = function(number) {
+ function TrafficLight(x){
+ var className = createTrafficLightClass(x);
+ 
+ var trafficLightElement = document.querySelector(className); 
      this.makeGreen = function() {
+        trafficLightElement.classList.remove("lights-stop");
+        trafficLightElement.classList.remove("lights-slowdown");
         trafficLightElement.classList.add("lights-go");
      }
-     this.makeOrange = function() {
-        trafficLightElement.classList.add("lights-slowdown");
-        trafficLightElement.classList.remove("lights-slowdown");
-
+     this.makeOrange = function(){
+        trafficLightElement.classList.remove("lights-go");
+        trafficLightElement.classList.remove("lights-stop");
+        trafficLightElement.classList.add("lights-slowdown"); 
      }
-     this.makeRed = function() {
+     this.makeRed = function(){
+        trafficLightElement.classList.remove("lights-slowdown");
+        trafficLightElement.classList.remove("lights-go");
         trafficLightElement.classList.add("lights-stop");
      }
-     this.color = function() {
-        if (trafficLightElement.classList.contains("lights-slowdown")){
+     this.color = function(){
+      if (trafficLightElement.classList.contains("lights-slowdown")){
         return 'orange';
-     };
- };
+      }
+      else if (trafficLightElement.classList.contains("lights-go")){
+        return 'green';
+      }
+    else if (trafficLightElement.classList.contains("lights-stop")){
+        return 'red';
+    } 
+   };
+ }
  
-  var red = new TrafficLight('lights-stop');
-
-  var orange = new TrafficLight('lights-slowdown');
-
-  var green = new TrafficLight('lights-go');
+  
